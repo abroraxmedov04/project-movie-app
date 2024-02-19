@@ -20,14 +20,12 @@
       <div class="nav-logo w-44 py-1">
         <img src="./img/logo-netflix.png" alt="nav-logo" />
       </div>
-
       <ul class="nav-links flex gap-8">
         <li class="text-white uppercase"><a href="#">about us</a></li>
         <li class="text-white uppercase"><a href="#">company</a></li>
         <li class="text-white uppercase"><a href="#">bestseller</a></li>
         <li class="text-white uppercase"><a href="#">contact us</a></li>
       </ul>
-
       <form action="" class="relative flex js-form-search">
         <input type="text" placeholder="Search movie..." aria-label="Search movie..."
           class="w-96 px-3 py-1 rounded-sm bg-zinc-800 text-white js-input-search" />
@@ -35,7 +33,6 @@
           <i class="fa-solid fa-magnifying-glass text-xl text-zinc-300"></i>
         </button>
       </form>
-
       <div class="buttons flex gap-3">
         <button class="text-white bg-red-600 px-5 py-1 rounded-sm font-bold uppercase">
           join now
@@ -46,37 +43,20 @@
       </div>
     </nav>
   </header>
-
   <!-- main -->
-
   <main>
     <section>
       <div class="container m-auto py-8 px-8">
         <h2 class="text-3xl font-bold text-white mb-4">
           Choose a Movie Genre
         </h2>
-
         <form action="#" class="js-select-option-form">
           <label for="genre" class="text-white font-bold">Select Genre:</label>
           <select id="genre" name="genre"
-            class="w-56 px-2 py-1 rounded-sm bg-zinc-800 text-white font-bold js-select-option-input">
-            <option class="font-bold" value="All">All</option>
-            <option class="font-bold" value="Action">Action</option>
-            <option class="font-bold" value="Comedy">Comedy</option>
-            <option class="font-bold" value="Drama">Drama</option>
-            <option class="font-bold" value="Documentary">Documentary</option>
-            <option class="font-bold" value="History">History</option>
-            <option class="font-bold" value="Horror">Horror</option>
-            <option class="font-bold" value="Biography">Biography</option>
-            <option class="font-bold" value="Fantasy">Fantasy</option>
-            <option class="font-bold" value="Romance">Romance</option>
-            <option class="font-bold" value="Adventure">Adventure</option>
-            <option class="font-bold" value="Animation">Animation</option>
-            <option class="font-bold" value="Sport">Sport</option>
-            <option class="font-bold" value="Thriller">Thriller</option>
-            <option class="font-bold" value="Crime">Crime</option>
-            <option class="font-bold" value="Fantasy">Fantasy</option>
-            <option class="font-bold" value="Sci-Fi">Sci-Fi</option>
+            class="js-category-select w-56 px-2 py-1 rounded-sm bg-zinc-800 text-white font-bold js-select-option-input">
+            <option class="js-option-category font-bold" value="All">
+              All
+            </option>
           </select>
           <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded-sm ml-2 font-bold">
             Search
@@ -90,9 +70,7 @@
         <ul class="js-movie-list flex flex-wrap justify-center gap-6"></ul>
       </div>
     </section>
-
     <!-- modal  -->
-
     <div class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 hidden js-modal">
       <div class="modal-content flex items-center justify-center h-screen">
         <div class="bg-white max-w-5xl rounded-md">
@@ -173,7 +151,6 @@
       </div>
     </li>
   </template>
-
   <script src="./js/movies.js"></script>
   <script src="./js/main.js"></script>
 </body>

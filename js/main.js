@@ -66,26 +66,52 @@ let searchedMovie = (evt) => {
 
 elFormSearch.addEventListener("submit", searchedMovie);
 
-// Category filter
+// filter by categories
+const handleFilterCategories = (arr) => {
+  let result = [];
+  for (const movie of arr) {
+    const categories = movie.Categories.split("|");
+    for (const category of categories) {
+      if (!result.includes(category.trim())) {
+        result.push(category.trim());
+      }
+    }
+  }
+  return result;
+};
+
+const createCategories = () => {
+  const elCategorySelect = document.querySelector(".js-category-select");
+  const categories = handleFilterCategories(sliceMovie);
+  const fragmentOptions = document.createDocumentFragment();
+
+  categories.forEach((category) => {
+    let option = document.createElement("option");
+    option.classList.add("font-bold");
+    option.value = category;
+    option.textContent = category;
+    fragmentOptions.appendChild(option);
+  });
+
+  elCategorySelect.appendChild(fragmentOptions);
+};
+
+createCategories();
 
 const elSelectcategoryForm = document.querySelector(".js-select-option-form");
 const elSelectOptionInput = document.querySelector(".js-select-option-input");
-
-let filterByCategory = (evt) => {
+const filterByCategory = (evt) => {
   evt.preventDefault();
   elCardList.innerHTML = "";
-  const selectedCategory = elSelectOptionInput.value.toLowerCase().trim();
-
-  if (selectedCategory === "all") {
-    renderMovies(sliceMovie, elCardList);
-  } else {
+  const selectedCategory = elSelectOptionInput.value.trim();
+  if (selectedCategory !== "all") {
     const moviesInCategory = sliceMovie.filter((movie) =>
-      movie.Categories.toLowerCase().includes(selectedCategory)
+      movie.Categories.toLowerCase().includes(selectedCategory.toLowerCase())
     );
     renderMovies(moviesInCategory, elCardList);
   }
+  renderMovies(sliceMovie, elCardList);
 };
-
 elSelectcategoryForm.addEventListener("submit", filterByCategory);
 
 //!  modal
@@ -122,6 +148,4 @@ function openModal(movie) {
   elMovieRuntime.textContent = getHoursAndMin(movie.runtime);
   elModalSummary.textContent = movie.summary.substring(0, 300);
   elMovieModalLink.href = `https://www.youtube-nocookie.com/embed/${movie.ytid}`;
-
-  console.log(movie);
 }
