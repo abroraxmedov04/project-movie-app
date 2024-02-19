@@ -66,11 +66,11 @@ let searchedMovie = (evt) => {
 
 elFormSearch.addEventListener("submit", searchedMovie);
 
-// Category filter functionality
+// Category filter
+
 const elSelectcategoryForm = document.querySelector(".js-select-option-form");
 const elSelectOptionInput = document.querySelector(".js-select-option-input");
 
-// Category filter functionality
 let filterByCategory = (evt) => {
   evt.preventDefault();
   elCardList.innerHTML = "";
@@ -88,3 +88,40 @@ let filterByCategory = (evt) => {
 
 elSelectcategoryForm.addEventListener("submit", filterByCategory);
 
+//!  modal
+const elModal = document.querySelector(".js-modal");
+const elCloseModal = document.querySelector(".js-modal-close");
+const elframe = document.querySelector(".js-frame-modal");
+const elModalTitle = document.querySelector(".js-movie-title-modal");
+const elMovierating = document.querySelector(".js-movie-rating-modal");
+const elMovieYear = document.querySelector(".js-movie-year-modal");
+const elMovieRuntime = document.querySelector(".js-movie-watch-time-modal");
+const elModalSummary = document.querySelector(".js-summary-modal");
+const elMovieModalLink = document.querySelector(".js-movie-link-modal");
+
+elCardList.addEventListener("click", (event) => {
+  if (event.target.matches(".js-modal-btn")) {
+    const imdbId = event.target.dataset.imdbId;
+    const clickedMovie = sliceMovie.find((movie) => movie.imdb_id === imdbId);
+    if (clickedMovie) {
+      openModal(clickedMovie);
+    }
+  }
+});
+
+function openModal(movie) {
+  elModal.classList.remove("hidden");
+  elCloseModal.addEventListener("click", (evet) => {
+    elModal.classList.add("hidden");
+  });
+
+  elframe.src = `https://www.youtube-nocookie.com/embed/${movie.ytid}`;
+  elModalTitle.textContent = movie.fulltitle;
+  elMovierating.textContent = movie.imdb_rating;
+  elMovieYear.textContent = movie.movie_year;
+  elMovieRuntime.textContent = getHoursAndMin(movie.runtime);
+  elModalSummary.textContent = movie.summary.substring(0, 300);
+  elMovieModalLink.href = `https://www.youtube-nocookie.com/embed/${movie.ytid}`;
+
+  console.log(movie);
+}
