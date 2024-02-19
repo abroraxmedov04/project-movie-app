@@ -43,7 +43,6 @@ let renderMovies = (arr, node) => {
     cloneTemplate.querySelector(".js-modal-btn").dataset.imdbId = imdb_id;
 
     mainFragment.appendChild(cloneTemplate);
-    console.log(movie.Categories);
   });
 
   node.appendChild(mainFragment);
